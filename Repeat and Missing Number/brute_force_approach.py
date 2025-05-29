@@ -23,7 +23,7 @@ nums = [4, 3, 6, 2, 1, 1]
 ans = findTwoElement(nums)
 
 '''
-Time Complexity: O(N2), where N = size of the given array.
+Time Complexity: O(N^2), where N = size of the given array.
 Reason: Here, we are using nested loops to count occurrences of every element between 1 to N.
 
 Space Complexity: O(1) as we are not using any extra space.
