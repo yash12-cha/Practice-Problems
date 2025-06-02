@@ -1,5 +1,5 @@
 '''
-Approach:
+Approach Using Moore's Voting Algorithm:
 The steps are as follows:
 
 Initialize a candidate variable and a count variable.
