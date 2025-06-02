@@ -37,7 +37,6 @@ def majorityElement(nums):
 
 nums = [3,2,3]
 ans = majorityElement(nums)
-print(ans)
 
 '''
 Time Complexity: O(N) + O(N), where N = size of the given array.
