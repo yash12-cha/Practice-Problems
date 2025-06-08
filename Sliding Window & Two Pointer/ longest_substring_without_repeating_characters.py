@@ -1,3 +1,4 @@
+# Brute Force Approach
 def lengthOfLongestSubstring(s):
     n = len(s)
     max_len = 0  # stores the maximum length found
@@ -25,7 +26,7 @@ Time: O(n²) – You check all substrings starting at every index
 Space: O(k) – where k is the size of the set (at most 26 for lowercase, 128 for ASCII)
 '''
 
-# Optimal Approach 1
+# Optimal Approach
 
 def lengthOfLongestSubstring(s):
     n = len(s)
