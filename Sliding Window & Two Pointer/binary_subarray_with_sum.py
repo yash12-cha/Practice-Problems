@@ -79,3 +79,31 @@ No extra data structures.
 
 So the space is O(1).
 '''
+
+'''
+🎯 Real-Life Example: Chocolate Bars 🍫
+Let’s say you’re tracking how many chocolate bars kids eat in a day.
+
+You want to know:
+
+How many kids ate exactly 3 chocolate bars? (this is your k = 3)
+
+✅ What’s Easy to Count?
+It’s easy to count:
+
+Kids who ate at most 3 chocolate bars
+→ This includes kids who ate 0, 1, 2, and 3 bars
+→ Suppose there are 50 kids like this.
+
+Kids who ate at most 2 chocolate bars (k - 1)
+→ This includes kids who ate 0, 1, or 2 bars
+→ Suppose there are 30 kids like this.
+
+🧠 Now Subtract:
+If 50 kids ate at most 3, and 30 kids ate at most 2,
+then only 20 kids ate exactly 3.
+
+So:
+
+Exactly k = At most k - At most (k - 1)
+'''
