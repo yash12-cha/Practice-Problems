@@ -1,4 +1,3 @@
-# Paste your improved LRUCache and Node classes here
 class Node:
     def __init__(self, key, val):
         self.key = key
