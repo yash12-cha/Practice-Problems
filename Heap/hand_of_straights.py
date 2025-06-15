@@ -44,6 +44,8 @@ The space complexity is O(n) for the frequency map, which stores the count of ea
 '''
 
 
+# Optimal Approach
+
 import heapq
 
 def isNStraightHand(hand, groupSize):
