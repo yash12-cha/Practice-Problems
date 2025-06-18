@@ -48,6 +48,7 @@ Space Complexity:
 
 The space complexity is O(1) for the sorting operation (in-place) and O(n) for the result list.
 '''
+# Optimal Approach
 
 import heapq
 class MedianFinder:
