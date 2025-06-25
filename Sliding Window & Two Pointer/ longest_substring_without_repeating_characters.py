@@ -2,6 +2,7 @@
 def lengthOfLongestSubstring(s):
     n = len(s)
     max_len = 0  # stores the maximum length found
+    max_str = ""
 
     # Try every possible starting point of the substring
     for i in range(n):
@@ -12,12 +13,14 @@ def lengthOfLongestSubstring(s):
             if s[j] in seen:
                 break  # found a repeating character, stop expanding
             seen.add(s[j])  # add current character to the set
-            max_len = max(max_len, j - i + 1)  # update max length
-
-    return max_len  # return the maximum length found
+            current_length = j - i + 1  # calculate current length
+            if current_length > max_len:  # update max length and substring
+                max_len = current_length
+                max_str = s[i:j + 1]  # include the current character
+    return max_len, max_str  # return the maximum length and the longest substring
 
 s = "abcabcbb"
-ans = lengthOfLongestSubstring(s)
+length, substring = lengthOfLongestSubstring(s)
 
 '''
 🧠 Time and Space Complexity:
@@ -34,14 +37,17 @@ def lengthOfLongestSubstring(s):
     right = 0  # Right pointer of the sliding window
     char_set = set()  # Set to store unique characters in current window
     max_len = 0  # Variable to store the maximum length of substring
-
+    max_str = ""
     # Iterate using the right pointer
     while right < n:
         if s[right] not in char_set:
             # If character not in set, add it to the set
             char_set.add(s[right])
+            current_length = right - left + 1  # calculate current length
             # Update max_len if the current window is longer
-            max_len = max(max_len, right - left + 1)
+            if current_length > max_len:  # update max length and substring
+                max_len = current_length
+                max_str = s[left:right + 1]  # include the current character
             # Move right pointer to expand the window
             right += 1
         else:
@@ -49,11 +55,10 @@ def lengthOfLongestSubstring(s):
             char_set.remove(s[left])
             # Move left pointer to shrink the window
             left += 1
-
-    return max_len  # Return the length of longest substring without duplicates
+    return max_len, max_str  # return the maximum length and the longest substring
 
 s = "abcabcbb"
-ans = lengthOfLongestSubstring(s)
+length, substring = lengthOfLongestSubstring(s)
 
 '''
 🧠 Time Complexity:
