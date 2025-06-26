@@ -21,27 +21,50 @@ Reason: We have not used any extra data structures, this makes space complexity,
 def search(nums, target):
     low = 0
     high = len(nums) - 1
+    
     while low <= high:
-        mid = (low + high) // 2
+        mid = (low + high) // 2  # Calculate the middle index
+        
+        # Check if the middle element is the target
         if nums[mid] == target:
             return True
+        
         # If duplicates are at the ends, skip them
         if nums[low] == nums[mid] == nums[high]:
-            low += 1
-            high -= 1
+            # When the elements at low, mid, and high are the same,
+            # we cannot determine which side is sorted.
+            # To avoid missing potential targets, we increment low
+            # and decrement high to narrow down the search space.
+            low += 1  # Move the low pointer to the right
+            high -= 1  # Move the high pointer to the left
+            
         # Left Sorted
         elif nums[low] <= nums[mid]:
-            if nums[low] <= target and target <= nums[mid]:
+            # If the left side is sorted
+            if nums[low] <= target <= nums[mid]:
+                # If the target is within the range of the sorted left side,
+                # search in the left half by adjusting the high pointer.
                 high = mid - 1
             else:
+                # If the target is not in the range of the sorted left side,
+                # search in the right half by adjusting the low pointer.
                 low = mid + 1
+        
         # Right Sorted
         else:
-            if nums[mid] <= target and target <= nums[high]:
+            # If the right side is sorted
+            if nums[mid] <= target <= nums[high]:
+                # If the target is within the range of the sorted right side,
+                # search in the right half by adjusting the low pointer.
                 low = mid + 1
             else:
+                # If the target is not in the range of the sorted right side,
+                # search in the left half by adjusting the high pointer.
                 high = mid - 1
+    
+    # If we exit the loop, the target was not found
     return False
+
 
 nums = [2,5,6,0,0,1,2]
 target = 0
