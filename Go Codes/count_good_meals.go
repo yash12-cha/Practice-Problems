@@ -45,3 +45,56 @@ func countPairs(deliciousness []int) int {
 Time Complexity = O(n²)
 Space Complexity = O(1)
 */
+
+
+// Optimal Approach
+
+func countPairs(deliciousness []int) int {
+    const MOD = 1_000_000_007
+    maxSum := 0
+    // Calculate the maximum possible sum to determine the power of twos
+    for _, val := range deliciousness {
+        if val > maxSum {
+            maxSum = val
+        }
+    }
+    maxSum *= 2 // The maximum sum can be twice the maximum value in deliciousness
+    // Generate the list of powers of two up to maxSum
+    powerOfTwos := []int{}
+    for i := 1; i <= maxSum; i++ {
+        if i & (i - 1) == 0 { // Check if i is a power of two
+            powerOfTwos = append(powerOfTwos, i)
+        }
+    }
+    // Map to count occurrences of each deliciousness value
+    count := make(map[int]int)
+    res := 0
+    // Iterate through each value in deliciousness
+    for _, val := range deliciousness {
+        // Check for each power of two
+        for _, target := range powerOfTwos {
+            complement := target - val
+            freq, exists := count[complement]
+            if exists {
+                // If it exists, freq will hold the number of times the complement has been seen
+                // Update the result by adding the frequency of the complement
+                res = (res + freq) % MOD // Ensure the result stays within the bounds of MOD
+            }
+        }
+        count[val]++ // Increment the count for the current value
+    }
+    
+    return res
+}
+
+/*
+Time Complexity = O(n.log(maxValue))
+Space Complexity = O(n)
+*/
+
+
+/*
+Note:
+In above code make() is used to initialize the map before using it, because in Go, maps must be explicitly initialized to allocate memory.
+Without make, writing to the map would cause a runtime panic since it's nil.
+*/
